@@ -68,7 +68,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		//Zeichnen der Straße
 		
 		g.setColor(Color.GRAY);
-		g.fillRect(0, hogsMeadSizeY, hogsMeadSizeX , 100);
+		g.fillRect(0, hogsMeadSizeY - 100, hogsMeadSizeX , 100);
 		
 		//hier wird alles gezeichnet ...
 		
@@ -83,9 +83,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	}
 	
 	private void buildTrees() {
-		trees[0] = new Tree(100, 320, 50, 100);
-		trees[1] = new Tree(200, 320, 30, 100);
-		trees[2] = new Tree(300, 320, 100, 100);
+		trees[0] = new Tree(100, 220, 50, 100);
+		trees[1] = new Tree(200, 220, 30, 100);
+		trees[2] = new Tree(300, 220, 100, 100);
 	}
 	
 	
