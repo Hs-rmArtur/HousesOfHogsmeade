@@ -23,7 +23,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	
 	Tree trees[] = new Tree[3];
 	
-	
+	Sun sun;
 	
 
 	/**
@@ -46,6 +46,8 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		buildTrees();
 		
+		buildSun();
+		
 		
 	}
 	
@@ -61,7 +63,12 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		super.paint(g);
 		
 		// Beispiel fuer das Zeichnen des Himmels
-		g.setColor(new Color(50, 100, 200));
+		if (sun.dayTime) {
+			g.setColor(new Color(50, 100, 200));
+		} else {
+			g.setColor(Color.BLACK);
+		}
+		
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		
@@ -76,9 +83,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 			if(trees[i] != null) {
 				trees[i].draw(g);
 			}
-	
 		}
-	
+		
+		sun.draw(g);
 
 	}
 	
@@ -86,6 +93,10 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		trees[0] = new Tree(100, 220, 50, 100);
 		trees[1] = new Tree(200, 220, 30, 100);
 		trees[2] = new Tree(300, 220, 100, 100);
+	}
+	
+	private void buildSun() {
+		sun = new Sun(550, 50, 70);
 	}
 	
 	
@@ -105,7 +116,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		y = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
 		
 		// hier sollte dann der Maus-Event entsprechend verarbeitet werden
-		
+		sun.switchTime(x, y);
 		
 		// nach jeder Veraenderung soll der Graphik-Kontext neu gezeichnet werden
 		repaint();
