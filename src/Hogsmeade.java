@@ -17,12 +17,24 @@ import javax.swing.JPanel;
 public class Hogsmeade extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
+	
+	private int hogsMeadSizeX;
+	private int hogsMeadSizeY;
+	
+	Tree trees[] = new Tree[3];
+	
+	
+	
 
 	/**
 	 * Initialisierung des Panels und setzen des MouseListerns
 	 * fuer die Verwendung von Maus-Ereignissen
 	 */
-	public Hogsmeade(){
+	public Hogsmeade(int hogsMeadSizeX, int hogsMeadSizeY){
+		
+		this.hogsMeadSizeX = hogsMeadSizeX;
+		this.hogsMeadSizeY = hogsMeadSizeY;
+		
 		
 		/* registriert Panel als MouseListener, so dass die jeweilige spezialisierte 
 		 * Methode aufgerufen wird, wenn ein Mausereignis innerhalb des Panels ausgeloest 
@@ -31,6 +43,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 		
 		// Initialisiere Haeuser, Baeume, Sonne ...
+		
+		buildTrees();
+		
 		
 	}
 	
@@ -48,10 +63,31 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		// Beispiel fuer das Zeichnen des Himmels
 		g.setColor(new Color(50, 100, 200));
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
+		
+		//Zeichnen der Straße
+		
+		g.setColor(Color.GRAY);
+		g.fillRect(0, hogsMeadSizeY, hogsMeadSizeX , 100);
+		
 		//hier wird alles gezeichnet ...
 		
-		
+		for (int i = 0; i < trees.length; i++) {
+			if(trees[i] != null) {
+				trees[i].draw(g);
+			}
+	
+		}
+	
+
 	}
+	
+	private void buildTrees() {
+		trees[0] = new Tree(100, 320, 50, 100);
+		trees[1] = new Tree(200, 320, 30, 100);
+		trees[2] = new Tree(300, 320, 100, 100);
+	}
+	
 	
 	
 	/** 
