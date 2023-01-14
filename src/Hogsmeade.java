@@ -22,6 +22,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	private int hogsMeadSizeY;
 	
 	Tree trees[] = new Tree[3];
+	House houses[] = new House[5];
 	
 	Sun sun;
 	
@@ -48,7 +49,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		buildSun();
 		
-		
+		buildHouses();
 	}
 	
 	/** 
@@ -79,6 +80,12 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		//hier wird alles gezeichnet ...
 		
+		for (int i = 0; i < houses.length; i++) {
+			if(houses[i] != null) {
+				houses[i].draw(g);
+			}
+		}
+		
 		for (int i = 0; i < trees.length; i++) {
 			if(trees[i] != null) {
 				trees[i].draw(g);
@@ -86,6 +93,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 		
 		sun.draw(g);
+		
 
 	}
 	
@@ -97,6 +105,14 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	
 	private void buildSun() {
 		sun = new Sun(550, 50, 70);
+	}
+	
+	private void buildHouses() {
+		houses[0] = new House(100, 200, 200, 200, Color.PINK);
+//		houses[1] = new House(200, 200, 200, 200);
+//		houses[2] = new House();
+//		houses[3] = new House();
+//		houses[4] = new House();
 	}
 	
 	
