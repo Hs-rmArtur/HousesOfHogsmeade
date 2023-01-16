@@ -22,6 +22,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	private int hogsMeadSizeY;
 	
 	Tree trees[] = new Tree[3];
+	
 	House houses[] = new House[5];
 	
 	Sun sun;

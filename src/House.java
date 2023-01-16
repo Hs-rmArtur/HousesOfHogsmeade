@@ -9,7 +9,11 @@ public class House {
 	boolean lightOn;
 	Color wallColor;
 	
-	int windowWidth = 10;
+	int windowsFirstFloor;
+	int windowsGroundFloor;
+	
+	int windowWidth;
+	int windowHeight;
 	
 	public House (int x, int y, int width, int height, Color wallColor) {
 		this.x = x;
@@ -18,8 +22,13 @@ public class House {
 		this.height = height;
 		this.wallColor = wallColor;
 		
-		lightOn = false;
+		this.windowsFirstFloor = 3;
+		this.windowsGroundFloor = 3;
 		
+		this.windowWidth = width / 4;
+		this.windowHeight = height / 3;
+		
+		lightOn = false;
 		
 	}
 	
@@ -47,14 +56,34 @@ public class House {
 		g.setColor(Color.gray);
 		g.fillRect(x + 20, y - height / 10, width / 10, height / 10 / 4);
 		
+		// Windows on the first floor
 		
+		g.setColor(Color.white);
+		
+		for (int i = 0; i < windowsFirstFloor; i++) {
+			
+			g.fillRect(x + width / 15, y + height / 5, windowWidth, windowHeight);
+			
+			x = x + windowWidth + width / 15;
+
+		}	
+		
+		// Resetting x
+		for (int i = 0; i < windowsFirstFloor; i++) {
+						
+			x = x - windowWidth - width / 15;
+
+		}
+		
+		// Windows on the ground floor
+		for (int i = 0; i < windowsGroundFloor; i++) {
+			
+			g.fillRect(x + width / 15, y + 120, windowWidth, windowHeight);
+			
+			x = x + windowWidth + width / 15;
+
+		}	
 		
 	}
 	
-	private int determineNumberOfWindows() {
-		
-		
-		
-		return width / windowWidth;
-	}
 }
