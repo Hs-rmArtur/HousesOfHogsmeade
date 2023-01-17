@@ -45,7 +45,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		// Initialisiere Haeuser, Baeume, Sonne ...
 		
-		buildTrees();
+	//	buildTrees();
 		
 		buildSun();
 		
@@ -75,8 +75,8 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		//Zeichnen der Straße
 		
-		g.setColor(Color.GRAY);
-		g.fillRect(0, hogsMeadSizeY - 100, hogsMeadSizeX , 100);
+		//g.setColor(Color.GRAY);
+		//g.fillRect(0, hogsMeadSizeY - 100, hogsMeadSizeX , 100);
 		
 		//hier wird alles gezeichnet ...
 		
@@ -108,7 +108,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	}
 	
 	private void buildHouses() {
-		houses[0] = new House(100, 200, 200, 200, Color.PINK);
+		houses[0] = new House(100, 200, 200, 300, Color.PINK);
 //		houses[1] = new House(200, 200, 200, 200);
 //		houses[2] = new House();
 //		houses[3] = new House();
@@ -133,6 +133,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		
 		// hier sollte dann der Maus-Event entsprechend verarbeitet werden
 		sun.switchTime(x, y);
+		houses[0].switchLight(x, y);
 		
 		// nach jeder Veraenderung soll der Graphik-Kontext neu gezeichnet werden
 		repaint();
