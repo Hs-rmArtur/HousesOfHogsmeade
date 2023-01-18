@@ -24,8 +24,17 @@ public class Window {
 	}
 
 	public void draw(Graphics g) {
+		
+		if (lightState) {
+			color = WINDOW_COLOR_LIGHT_ON;
+		} else {
+			color = WINDOW_COLOR_LIGHT_OFF;
+		}
+		
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
+		
+
 	}
 
 	public int getWidth() {
@@ -41,16 +50,7 @@ public class Window {
 	}
 
 	public void setLightState(boolean state) {
-		lightState = state;
-		
-		switchLight();
+		lightState = state;		
 	}
 
-	public void switchLight() {
-		if (lightState) {
-			color = WINDOW_COLOR_LIGHT_ON;
-		} else {
-			color = WINDOW_COLOR_LIGHT_OFF;
-		}
-	}
 }

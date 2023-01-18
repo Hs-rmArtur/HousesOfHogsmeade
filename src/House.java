@@ -2,9 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class House {
-	private static final int SPACE_BETWEEN_WINDOWS_HORIZONTAL = 20;
-	private static final int SPACE_BETWEEN_WINDOWS_VERTICAL = 40;
-	private static final int WINDOWS_DINSTANCE_FROM_GROUND = 20;
+//	private static final int SPACE_BETWEEN_WINDOWS_HORIZONTAL = 20;
+//	private static int SPACE_BETWEEN_WINDOWS_VERTICAL = 20;
+	private static final int WINDOWS_DINSTANCE_FROM_GROUND = 10;
 
 	private int x;
 	private int y;
@@ -13,6 +13,9 @@ public class House {
 	private boolean lightOn = false;
 	private Window windows[][];
 
+	private int spaceBetweenWindowsHorizontal = 20;
+	private int spaceBetweenWindowsVertical = 20;
+	
 	private int windowsWidth = 40;
 	private int windowsHeight = 60;
 
@@ -92,17 +95,17 @@ public class House {
 	private void buildWindows() {
 		int windowRows = determineNumberOfWindowRows();
 		int windowsInRow = determineNumberOfWindowsInRow();
-		int windowX = x + SPACE_BETWEEN_WINDOWS_HORIZONTAL;
+		int windowX = x + spaceBetweenWindowsHorizontal;
 		int windowY = y + height - WINDOWS_DINSTANCE_FROM_GROUND - windowsHeight;
 		windows = new Window[windowRows][windowsInRow];
 
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {
 				windows[i][j] = new Window(windowX, windowY, windowsWidth, windowsHeight);
-				windowX += SPACE_BETWEEN_WINDOWS_HORIZONTAL + windowsWidth;
+				windowX += spaceBetweenWindowsHorizontal + windowsWidth;
 			}
-			windowX = x + SPACE_BETWEEN_WINDOWS_HORIZONTAL;
-			windowY = windowY - SPACE_BETWEEN_WINDOWS_VERTICAL - windowsHeight;
+			windowX = x + spaceBetweenWindowsHorizontal;
+			windowY = windowY - spaceBetweenWindowsVertical - windowsHeight;
 		}
 	}
 
@@ -111,13 +114,14 @@ public class House {
 	}
 
 	private int determineNumberOfWindowRows() {
-		int numberOfWindowRows = (height - roofHeight) / (windowsHeight + SPACE_BETWEEN_WINDOWS_VERTICAL);
+		int numberOfWindowRows = (height - roofHeight) / (windowsHeight + spaceBetweenWindowsVertical);
 		return numberOfWindowRows;
 	}
 
 	private int determineNumberOfWindowsInRow() {
-		int numberOfWindows = width / (windowsWidth + SPACE_BETWEEN_WINDOWS_HORIZONTAL);
+		int numberOfWindows = width / (windowsWidth + spaceBetweenWindowsHorizontal);
+		spaceBetweenWindowsHorizontal = (width - (numberOfWindows - 1) * windowsWidth) / numberOfWindows;
 
-		return numberOfWindows;
+		return numberOfWindows - 1;
 	}
 }
