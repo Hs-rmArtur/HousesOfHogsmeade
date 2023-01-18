@@ -57,9 +57,8 @@ public class House {
 		g.fillRect(x + 20, y - height / 10, width / 10, height / 10 / 4);
 		
 		// Windows on the first floor
-		
 		g.setColor(Color.white);
-		
+	
 		for (int i = 0; i < windowsFirstFloor; i++) {
 			
 			g.fillRect(x + width / 15, y + height / 5, windowWidth, windowHeight);
