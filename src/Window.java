@@ -36,6 +36,11 @@ public class Window {
 		
 
 	}
+	
+	public void makeWindowToDoor(int missingHeightTillDoor) {
+		height += missingHeightTillDoor;
+
+	}
 
 	public int getWidth() {
 		return width;
