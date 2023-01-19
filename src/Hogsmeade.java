@@ -176,10 +176,20 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	}
 
+	/**
+	 * The method getRandomPos is responsible for the giving of the random position in the sky.
+	 * @param min is the start range
+	 * @param max is the end range
+	 * @return returns the random position in the sky
+	 */
 	public static int getRandomPos(int min, int max) {
 		return (int) Math.round(Math.random() * (max - min) + min);
 	}
 
+	/**
+	 * The method buildTrees is responsible for the building of the trees. We have such parameter as width, height,
+	 * position on the X-axis and on the Y-axis
+	 */
 	private void buildTrees() {
 		int width = 50;
 		int height = 70;
@@ -192,10 +202,17 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * The method buildSun is responsible for the building of the sun. Therefore it is necessary
+	 * to write the parameters as position in X-axis, Y-axis and radius of the sun.
+	 */
 	private void buildSun() {
 		sun = new Sun(550, 50, 70);
 	}
 
+	/**
+	 * The method determineYOfHouses is responsible for the position of Houses on the X-axis
+	 */
 	private void determineXOfHouses() {
 		int houseX = 0;
 		// FirstHouse starts at 0
@@ -208,12 +225,18 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	}
 
+	/**
+	 * The method determineYOfHouses is responsible for the position of Houses on the Y-axis
+	 */
 	private void determineYOfHouses() {
 		for (int i = 0; i < houseYs.length; i++) {
 			houseYs[i] = houseLineY - HOUSE_HEIGHTS[i];
 		}
 	}
 
+	/**
+	 * The method buildHouseStreet is responsible for drawing of the whole street with houses and trees.
+	 */
 	private void buildHouseStreet() {
 		determineXOfHouses();
 		determineYOfHouses();
