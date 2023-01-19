@@ -13,7 +13,7 @@ public class Star {
 		this.y = y;
 		this.radius = radius;
 		
-		color = Color.YELLOW;
+		color = Color.WHITE;
 	}
 	
 	public void draw(Graphics g) {

@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Sun {
+	final static private Color SUN_COLOR_DAY = Color.YELLOW;
+	final static private Color SUN_COLOR_NIGHT = Color.WHITE;
+	
 
 	int x;
 	int y;
@@ -20,21 +23,23 @@ public class Sun {
 		if ((x >= this.x && x <= this.x + radius * 2) && (y >= this.y && y <= this.y + radius * 2)) {
 			
 			dayTime = !dayTime;
-			
 		}
 		
 		return dayTime;
-		
 	}
 	
-	public void draw (Graphics g) {
-		
-		g.setColor(Color.YELLOW);
-		
+	public void draw (Graphics g, Color skyColor) {		
 		if (dayTime) {
+			g.setColor(SUN_COLOR_DAY);
 			g.fillOval(x, y, radius, radius);
+			
 		} else {
-			g.drawOval(x, y, radius, radius);
+			g.setColor(SUN_COLOR_NIGHT);
+			g.fillOval(x, y, radius, radius);
+			
+			g.setColor(skyColor);
+			g.fillOval(x - 20, y, radius, radius);
 		}
 	}
+	
 }

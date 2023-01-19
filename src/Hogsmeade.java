@@ -20,17 +20,20 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	private static final int MAX_AMOUNT_STARS = 150;
 	private static final int AMOUNT_OF_HOUSES = 5;
 	private static final int AMOUNT_OF_TREES = 3;
-	private static final int HOUSE_WIDTHS[] = { 120, 150, 50, 200, 100 };
+	private static final int HOUSE_WIDTHS[] = { 150, 150, 50, 200, 100 };
 	private static final int HOUSE_HEIGHTS[] = { 120, 150, 100, 170, 120 };
 	private static final Color HOUSE_COLORS[] = { Color.PINK, Color.GREEN, Color.ORANGE, Color.MAGENTA, Color.RED };
 	private static final Color ROOF_COLORS[] = { new Color(130, 0, 0), new Color(130, 54, 0), new Color(172, 113, 35),
 			new Color(119, 75, 16), new Color(122, 92, 52) };
+	private static final Color SKY_COLOR_NIGHT = Color.BLACK;
+	private static final Color SKY_COLOR_DAY = new Color(50, 100, 200);
 
 	private int hogsMeadSizeX;
 	private int hogsMeadSizeY;
 	private int streetHeight;
 	private int houseLineY;
 	private int treeLineY;
+	private Color skyColor;
 
 	Sun sun;
 	Tree trees[] = new Tree[AMOUNT_OF_TREES];;
@@ -49,6 +52,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		streetHeight = 100;
 		houseLineY = hogsMeadSizeY - streetHeight + 10;
 		treeLineY = houseLineY + 10;
+		skyColor = SKY_COLOR_DAY;
 
 		this.addMouseListener(this);
 
@@ -68,7 +72,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		drawSky(g);
 
 		// zeichnen der Sonne
-		sun.draw(g);
+		drawSun(g);
 
 		// Zeichnen der Sterne bei Nacht
 		if (!sun.dayTime) {
@@ -96,13 +100,18 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 	
+	private void drawSun(Graphics g) {
+		sun.draw(g, skyColor);
+	}
+	
 	private void drawSky(Graphics g) {
 		if (sun.dayTime) {
-			g.setColor(new Color(50, 100, 200));
+			skyColor = SKY_COLOR_DAY;
 		} else {
-			g.setColor(Color.BLACK);
+			skyColor = SKY_COLOR_NIGHT;
 		}
-
+		
+		g.setColor(skyColor);
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
@@ -140,7 +149,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	private int adjustDarkness() {
 		int housesWithLightsOn = 0;
-		int darkness = 100;
+		int darkness = 150;
 
 		for (int i = 0; i < houses.length; i++) {
 			if (houses[i].getLightOn()) {
@@ -148,7 +157,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 			}
 		}
 
-		return darkness - housesWithLightsOn * 20;
+		return darkness - housesWithLightsOn * 24;
 
 	}
 
