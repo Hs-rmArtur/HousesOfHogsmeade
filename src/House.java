@@ -38,6 +38,16 @@ public class House {
 
 	private int roofHeight;
 
+	/**
+	 * Constructor of House
+	 * 
+	 * @param x         setting x-position of House
+	 * @param y         setting y-position of House
+	 * @param width     setting width of House
+	 * @param height    setting height of House
+	 * @param wallColor setting wall color of House
+	 * @param roofColor setting roof color of House
+	 */
 	public House(int x, int y, int width, int height, Color wallColor, Color roofColor) {
 		this.x = x;
 		this.y = y;
@@ -68,6 +78,13 @@ public class House {
 		buildWindowsAndDoors();
 	}
 
+	/**
+	 * Switching the lights of the house
+	 * 
+	 * @param x x-position of mouseClick
+	 * @param y y-position of mouseClick
+	 * @return boolean if light is on or not
+	 */
 	public boolean switchLight(int x, int y) {
 
 		if ((x >= this.x && x <= this.x + width) && (y >= this.y && y <= this.y + height)) {
@@ -78,6 +95,11 @@ public class House {
 		return lightOn;
 	}
 
+	/**
+	 * Draw the whole house
+	 * 
+	 * @param g setting Graphics
+	 */
 	public void draw(Graphics g) {
 
 		// Wall of the house
@@ -101,6 +123,11 @@ public class House {
 
 	}
 
+	/**
+	 * Draws a window row into the house
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawWindowRow(Graphics g) {
 		changeWindowsByDayStatus();
 		adjustWindowLights();
@@ -114,6 +141,9 @@ public class House {
 		}
 	}
 
+	/**
+	 * Windows are changing light-off-color, when its day or night
+	 */
 	private void changeWindowsByDayStatus() {
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {
@@ -124,6 +154,9 @@ public class House {
 		}
 	}
 
+	/**
+	 * Switch the light status of windows
+	 */
 	private void adjustWindowLights() {
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {
@@ -134,6 +167,13 @@ public class House {
 		}
 	}
 
+	/**
+	 * Changing one of the windows at the lower window-level to a door. When the
+	 * amount of windows is even, then its the left one. When its uneven its the
+	 * second one from the right.
+	 * 
+	 * @param windowsInRow amount of windows in one row of the house
+	 */
 	private void makeWindowToDoor(int windowsInRow) {
 		int doorAtIndex = windows[0].length - 1;
 
@@ -153,6 +193,9 @@ public class House {
 
 	}
 
+	/**
+	 * Building the windows into the house evenly and convert one of them in a door.
+	 */
 	private void buildWindowsAndDoors() {
 		int windowRows = determineNumberOfWindowRows();
 		int windowsInRow = determineNumberOfWindowsInRow();
@@ -174,6 +217,12 @@ public class House {
 
 	}
 
+	/**
+	 * Checks, how much windows + the space between the windows are fitting into the
+	 * house-width.
+	 * 
+	 * @return number of fitting windows
+	 */
 	private int determineNumberOfWindowsInRow() {
 		int numberOfWindows = width / (windowsWidth + spaceBetweenWindowsHorizontal);
 		spaceBetweenWindowsHorizontal = (width - (numberOfWindows - 1) * windowsWidth) / numberOfWindows;
@@ -181,6 +230,11 @@ public class House {
 		return numberOfWindows - 1;
 	}
 
+	/**
+	 *  * Checks, how much windows + the space between the windows are fitting into the
+	 * house-height.
+	 * @return number of fitting windows
+	 */
 	private int determineNumberOfWindowRows() {
 		int numberOfWindowRows = (height - roofHeight) / (windowsHeight + spaceBetweenWindowsVertical);
 		spaceBetweenWindowsVertical = ((height - roofHeight - WINDOWS_DINSTANCE_FROM_GROUND)
@@ -188,10 +242,19 @@ public class House {
 		return numberOfWindowRows;
 	}
 
+	/**
+	 * Getter of the variable lightOn
+	 * @return boolean if light is on or not
+	 */
 	public boolean getLightOn() {
 		return lightOn;
 	}
 
+	
+	/**
+	 * Setter of the variable itsDay
+	 * @param state a boolean if it's day or not
+	 */
 	public void setItsDay(boolean state) {
 		this.itsDay = state;
 	}
