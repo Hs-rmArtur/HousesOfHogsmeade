@@ -44,7 +44,7 @@ public class Sun {
 			dayTime = !dayTime;
 		}
 
-		return dayTime;			// the method returns the dayTime (night or day)
+		return dayTime;		
 	}
 
 	/**
