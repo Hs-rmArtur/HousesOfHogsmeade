@@ -40,10 +40,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	int houseXs[] = new int[AMOUNT_OF_HOUSES];
 	int houseYs[] = new int[AMOUNT_OF_HOUSES];
 
-	/**
-	 * Initialisierung des Panels und setzen des MouseListerns fuer die Verwendung
-	 * von Maus-Ereignissen
-	 */
+	
 	public Hogsmeade(int hogsMeadSizeX, int hogsMeadSizeY) {
 
 		this.hogsMeadSizeX = hogsMeadSizeX;
@@ -53,14 +50,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		houseLineY = hogsMeadSizeY - streetHeight + 10;
 		treeLineY = houseLineY + 10;
 
-		/*
-		 * registriert Panel als MouseListener, so dass die jeweilige spezialisierte
-		 * Methode aufgerufen wird, wenn ein Mausereignis innerhalb des Panels
-		 * ausgeloest wird
-		 */
 		this.addMouseListener(this);
 
-		// Initialisiere Haeuser, Baeume, Sonne ...
+		// Initialisierung
 
 		buildTrees();
 
@@ -71,19 +63,40 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		buildHouseStreet();
 	}
 
-	/**
-	 * Zeichnen der Strasse.
-	 * 
-	 * Umsetzung der Methode
-	 * 
-	 * @see java.awt.Component#paint(java.awt.Graphics)
-	 * 
-	 * @param g Graphik-Kontext, auf dem die Landschaft gezeichnet wird
-	 */
 	public void paint(Graphics g) {
 		super.paint(g);
+		drawSky(g);
 
-		// Beispiel fuer das Zeichnen des Himmels
+		// zeichnen der Sonne
+		sun.draw(g);
+
+		// Zeichnen der Sterne bei Nacht
+		if (!sun.dayTime) {
+			drawStars(g);
+		}
+
+		// Zeichnen der Straße
+		drawStreet(g);
+
+		// Zeichnen der Häuser
+		drawHouses(g);
+
+		// Zeichnen der Bäume
+		drawTrees(g);
+
+		// making darkness
+		if (!sun.dayTime) {
+			addDarkness(g);
+		}
+
+	}
+
+	private void addDarkness(Graphics g) {
+		g.setColor(new Color(28, 27, 27, adjustDarkness()));
+		g.fillRect(0, 0, getWidth(), getHeight());
+	}
+	
+	private void drawSky(Graphics g) {
 		if (sun.dayTime) {
 			g.setColor(new Color(50, 100, 200));
 		} else {
@@ -91,62 +104,61 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 
 		g.fillRect(0, 0, getWidth(), getHeight());
+	}
 
-		// zeichnen der Sonne
-		sun.draw(g);
-
-		// Zeichnen der Sterne bei jeder Nacht neuer Sternenhimmel
-		if (!sun.dayTime) {
-
-			for (int i = 0; i < stars.length; i++) {
-				if (stars[i] != null) {
-					stars[i].draw(g);
-				}
+	private void drawStars(Graphics g) {
+		for (int i = 0; i < stars.length; i++) {
+			if (stars[i] != null) {
+				stars[i].draw(g);
 			}
-
 		}
+	}
 
-		// Zeichnen der Straße
-
+	private void drawStreet(Graphics g) {
 		g.setColor(Color.GRAY);
 		g.fillRect(0, hogsMeadSizeY - streetHeight, hogsMeadSizeX, streetHeight);
 
-		// hier wird alles gezeichnet ...
+	}
 
-		for (int i = 0; i < houses.length; i++) {
-			if (houses[i] != null) {				
-				houses[i].draw(g);
-			}
-		}
-
+	private void drawTrees(Graphics g) {
 		for (int i = 0; i < trees.length; i++) {
 			if (trees[i] != null) {
 				trees[i].draw(g);
 			}
 		}
-
-		// making darkness
-		if (!sun.dayTime) {
-			g.setColor(new Color(28, 27, 27, makeDarkness()));
-			g.fillRect(0, 0, getWidth(), getHeight());
-		}
-
 	}
 
-	private int makeDarkness() {
+	private void drawHouses(Graphics g) {
+		letHousesKnowDayState();
+
+		for (int i = 0; i < houses.length; i++) {
+			if (houses[i] != null) {
+				houses[i].draw(g);
+			}
+		}
+	}
+
+	private int adjustDarkness() {
 		int housesWithLightsOn = 0;
 		int darkness = 100;
-		
+
 		for (int i = 0; i < houses.length; i++) {
-			if(houses[i].getLightOn()) {
+			if (houses[i].getLightOn()) {
 				housesWithLightsOn++;
 			}
 		}
-		
-	return darkness - housesWithLightsOn * 20;
-		
+
+		return darkness - housesWithLightsOn * 20;
+
 	}
-	
+
+	private void letHousesKnowDayState() {
+
+		for (int i = 0; i < houses.length; i++) {
+			houses[i].setItsDay(sun.dayTime);
+		}
+	}
+
 	private void buildStars() {
 		int x;
 		int y;
@@ -200,8 +212,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
-	private void buildHouseStreet() {
-
+	private void buildHouseStreet() { 
 		determineXOfHouses();
 		determineYOfHouses();
 
@@ -209,6 +220,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 			houses[i] = new House(houseXs[i], houseYs[i], HOUSE_WIDTHS[i], HOUSE_HEIGHTS[i], HOUSE_COLORS[i],
 					ROOF_COLORS[i]);
 		}
+
 	}
 
 	/**

@@ -2,26 +2,25 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class House {
-//	private static final int SPACE_BETWEEN_WINDOWS_HORIZONTAL = 20;
-//	private static int SPACE_BETWEEN_WINDOWS_VERTICAL = 20;
 	private static final int WINDOWS_DINSTANCE_FROM_GROUND = 10;
 
 	private int x;
 	private int y;
 	private int width;
 	private int height;
-	private boolean lightOn = false;
+	private boolean lightOn;
+	private boolean itsDay;
 	private Window windows[][];
 
-	private int spaceBetweenWindowsHorizontal = 10;
-	private int spaceBetweenWindowsVertical = 10;
+	private int spaceBetweenWindowsHorizontal;
+	private int spaceBetweenWindowsVertical;
 
-	private int windowsWidth = 15;
-	private int windowsHeight = 30;
+	private int windowsWidth;
+	private int windowsHeight;
 
 	private Color wallColor;
 	private Color roofColor;
-	private Color chimneyColor = Color.GRAY;
+	private Color chimneyColor;
 
 	private int roofHeight;
 
@@ -33,18 +32,28 @@ public class House {
 
 		this.wallColor = wallColor;
 		this.roofColor = roofColor;
-		
+
+		spaceBetweenWindowsHorizontal = 10;
+		spaceBetweenWindowsVertical = 10;
+		windowsWidth = 15;
+		windowsHeight = 30;
+
+		lightOn = false;
+		itsDay = true;
+
 		roofHeight = height / 6;
+
+		chimneyColor = Color.GRAY;
 
 		buildWindowsAndDoors();
 	}
 
 	public boolean switchLight(int x, int y) {
+
 		if ((x >= this.x && x <= this.x + width) && (y >= this.y && y <= this.y + height)) {
 
 			lightOn = !lightOn;
 
-			switchAllWindowLights();
 		}
 
 		return lightOn;
@@ -74,6 +83,9 @@ public class House {
 	}
 
 	private void drawWindowRow(Graphics g) {
+		changeWindowsByDayStatus();
+		adjustWindowLights();
+
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {
 				if (windows[i][j] != null) {
@@ -83,7 +95,17 @@ public class House {
 		}
 	}
 
-	private void switchAllWindowLights() {
+	private void changeWindowsByDayStatus() {
+		for (int i = 0; i < windows.length; i++) {
+			for (int j = 0; j < windows[i].length; j++) {
+				if (windows[i][j] != null) {
+					windows[i][j].setItsDay(itsDay);
+				}
+			}
+		}
+	}
+
+	private void adjustWindowLights() {
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {
 				if (windows[i][j] != null) {
@@ -133,7 +155,6 @@ public class House {
 
 	}
 
-
 	private int determineNumberOfWindowsInRow() {
 		int numberOfWindows = width / (windowsWidth + spaceBetweenWindowsHorizontal);
 		spaceBetweenWindowsHorizontal = (width - (numberOfWindows - 1) * windowsWidth) / numberOfWindows;
@@ -147,12 +168,13 @@ public class House {
 				- (numberOfWindowRows * windowsHeight)) / numberOfWindowRows;
 		return numberOfWindowRows;
 	}
-	
+
 	public boolean getLightOn() {
 		return lightOn;
 	}
 
-
-
+	public void setItsDay(boolean state) {
+		this.itsDay = state;
+	}
 
 }

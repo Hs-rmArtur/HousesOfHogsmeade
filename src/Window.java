@@ -2,7 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Window {
-	final static private Color WINDOW_COLOR_LIGHT_OFF = Color.WHITE;
+	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_DAY = Color.WHITE;
+	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_NIGHT = Color.DARK_GRAY;
 	final static private Color WINDOW_COLOR_LIGHT_ON = Color.YELLOW;
 
 	private int x;
@@ -12,6 +13,7 @@ public class Window {
 	private Color color;
 
 	private boolean lightState;
+	private boolean itsDay;
 
 	public Window(int x, int y, int width, int height) {
 		this.x = x;
@@ -19,24 +21,28 @@ public class Window {
 		this.width = width;
 		this.height = height;
 
-		color = WINDOW_COLOR_LIGHT_OFF;
+		color = WINDOW_COLOR_LIGHT_OFF_AT_DAY;
 		lightState = false;
 	}
 
 	public void draw(Graphics g) {
-		
+
 		if (lightState) {
 			color = WINDOW_COLOR_LIGHT_ON;
 		} else {
-			color = WINDOW_COLOR_LIGHT_OFF;
+			if (itsDay) {
+				color = WINDOW_COLOR_LIGHT_OFF_AT_DAY;
+			} else {
+				color = WINDOW_COLOR_LIGHT_OFF_AT_NIGHT;
+
+			}
 		}
-		
+
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
-		
 
 	}
-	
+
 	public void makeWindowToDoor(int missingHeightTillDoor) {
 		height += missingHeightTillDoor;
 
@@ -55,7 +61,11 @@ public class Window {
 	}
 
 	public void setLightState(boolean state) {
-		lightState = state;		
+		lightState = state;
+	}
+
+	public void setItsDay(boolean state) {
+		itsDay = state;
 	}
 
 }
