@@ -19,9 +19,9 @@ public class Sun {
 
 	/**
 	 * Constructor is responsible for the position x, position y and radius of the sun
-	 * @param x
-	 * @param y
-	 * @param radius
+	 * @param x is the position of the sun on the X-axis
+	 * @param y is the position of the sun on the Y-axis
+	 * @param radius is radius of the sun
 	 */
 	public Sun(int x, int y, int radius) {
 		this.x = x;
@@ -33,9 +33,9 @@ public class Sun {
 	/**
 	 * The method switchTime is responsible for the click on the sun. There is a formula for counting the area of
 	 * the sun in the whole JFrame.
-	 * @param x
-	 * @param y
-	 * @return
+	 * @param x	is the position of the sun on the X-axis in JFrame
+	 * @param y	is the position of the sun on the Y-axis in JFrame
+	 * @return	returns the dayTime (night or day)
 	 */
 	public boolean switchTime(int x, int y) {
 
@@ -49,8 +49,8 @@ public class Sun {
 
 	/**
 	 * The method draw is responsible for the drawing of the sun and moon (depends of the dayTime)
-	 * @param g
-	 * @param skyColor
+	 * @param g	is the variable which is responsible for drawing of the sun and the moon
+	 * @param skyColor is the color of the sky
 	 */
 	public void draw(Graphics g, Color skyColor) {
 		if (dayTime) {

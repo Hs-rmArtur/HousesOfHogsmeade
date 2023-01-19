@@ -178,9 +178,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	/**
 	 * The method getRandomPos is responsible for the giving of the random position in the sky.
-	 * @param min
-	 * @param max
-	 * @return
+	 * @param min is the start range
+	 * @param max is the end range
+	 * @return returns the random position in the sky
 	 */
 	public static int getRandomPos(int min, int max) {
 		return (int) Math.round(Math.random() * (max - min) + min);
