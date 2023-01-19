@@ -1,6 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * Window are a part of House and can switch light on and off according the
+ * dayTime. Position and size can be set individually.
+ * 
+ * @author Fouad Ahsayni, Mykhailo Fakliier, Artur Konkel
+ * @version 1.0
+ */
+
 public class Window {
 	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_DAY = Color.WHITE;
 	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_NIGHT = Color.DARK_GRAY;

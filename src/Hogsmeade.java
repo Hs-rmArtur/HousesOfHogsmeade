@@ -6,18 +6,17 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 /**
- * Basis-Panel stellt Grundfunktionen fuer den Aufbau interaktiver Anwendungen
- * zur Verfuegung.
+ * Hogsmeade are building a street with different houses, trees, sun/moon and
+ * stars. Sun is able to switch between day and night.
  * 
- * Alle Mausereignisse koennen in einzelnen Methoden verarbeitet werden.
- * 
- * @author Joerg Berdux
+ * @author Fouad Ahsayni, Mykhailo Fakliier, Artur Konkel
  * @version 1.0
  */
 public class Hogsmeade extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static final int MAX_AMOUNT_STARS = 150;
+	private static final int MAX_STAR_SIZE = 5;
 	private static final int AMOUNT_OF_HOUSES = 5;
 	private static final int AMOUNT_OF_TREES = 3;
 	private static final int HOUSE_WIDTHS[] = { 150, 150, 50, 200, 100 };
@@ -43,7 +42,6 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	int houseXs[] = new int[AMOUNT_OF_HOUSES];
 	int houseYs[] = new int[AMOUNT_OF_HOUSES];
 
-	
 	public Hogsmeade(int hogsMeadSizeX, int hogsMeadSizeY) {
 
 		this.hogsMeadSizeX = hogsMeadSizeX;
@@ -71,21 +69,16 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		super.paint(g);
 		drawSky(g);
 
-		// zeichnen der Sonne
 		drawSun(g);
 
-		// Zeichnen der Sterne bei Nacht
 		if (!sun.dayTime) {
 			drawStars(g);
 		}
 
-		// Zeichnen der Straße
 		drawStreet(g);
 
-		// Zeichnen der Häuser
 		drawHouses(g);
 
-		// Zeichnen der Bäume
 		drawTrees(g);
 
 		// making darkness
@@ -99,18 +92,18 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		g.setColor(new Color(28, 27, 27, adjustDarkness()));
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
-	
+
 	private void drawSun(Graphics g) {
 		sun.draw(g, skyColor);
 	}
-	
+
 	private void drawSky(Graphics g) {
 		if (sun.dayTime) {
 			skyColor = SKY_COLOR_DAY;
 		} else {
 			skyColor = SKY_COLOR_NIGHT;
 		}
-		
+
 		g.setColor(skyColor);
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
@@ -176,7 +169,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		for (int i = 0; i < stars.length; i++) {
 			x = getRandomPos(0, hogsMeadSizeX);
 			y = getRandomPos(0, hogsMeadSizeY - streetHeight);
-			radius = getRandomPos(0, 5);
+			radius = getRandomPos(0, MAX_STAR_SIZE);
 
 			stars[i] = new Star(x, y, radius);
 		}
@@ -221,7 +214,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
-	private void buildHouseStreet() { 
+	private void buildHouseStreet() {
 		determineXOfHouses();
 		determineYOfHouses();
 

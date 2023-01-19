@@ -1,6 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * House is building with rectangles a illustration of a real house. The color,
+ * size and position can be set individually. Is possible to switch lights on
+ * and off.
+ * 
+ * @author Fouad Ahsayni, Mykhailo Fakliier, Artur Konkel
+ * @version 1.0
+ */
 public class House {
 	private static final int WINDOWS_DINSTANCE_FROM_GROUND = 10;
 
@@ -17,6 +25,12 @@ public class House {
 
 	private int windowsWidth;
 	private int windowsHeight;
+
+	private int chimneyX;
+	private int chimneyY;
+	private int chimneyHeight;
+	private int chimneyWidth;
+	private int chimneyRoofHeight;
 
 	private Color wallColor;
 	private Color roofColor;
@@ -43,6 +57,12 @@ public class House {
 
 		roofHeight = height / 6;
 
+		chimneyX = x + width / 5;
+		chimneyY = y - height / 10;
+		chimneyHeight = height / 10;
+		chimneyWidth = width / 10;
+		chimneyRoofHeight = height / 10 / 4;
+
 		chimneyColor = Color.GRAY;
 
 		buildWindowsAndDoors();
@@ -53,7 +73,6 @@ public class House {
 		if ((x >= this.x && x <= this.x + width) && (y >= this.y && y <= this.y + height)) {
 
 			lightOn = !lightOn;
-
 		}
 
 		return lightOn;
@@ -71,11 +90,11 @@ public class House {
 
 		// Chimney of the house
 		g.setColor(wallColor);
-		g.fillRect(x + width / 5, y - height / 10, width / 10, height / 10);
+		g.fillRect(chimneyX, chimneyY, chimneyWidth, chimneyHeight);
 
 		// Roof of the chimney
 		g.setColor(chimneyColor);
-		g.fillRect(x + width / 5, y - height / 10, width / 10, height / 10 / 4);
+		g.fillRect(chimneyX, chimneyY, chimneyWidth, chimneyRoofHeight);
 
 		// window
 		drawWindowRow(g);
