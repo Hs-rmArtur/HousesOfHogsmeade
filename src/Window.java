@@ -42,7 +42,7 @@ public class Window {
 
 	/**
 	 * Draws window and color of the window based on 
-	 * x, y, the width, the height and on the daytime
+	 * x, y, the width, the height and the daytime
 	 * 
 	 * @param g setting graphics
 	 */
@@ -76,26 +76,27 @@ public class Window {
 	}
 
 	/**
-	 * Gets the width
+	 * Gets the width of the window
 	 * 
-	 * @return width 
+	 * @return width of the window
 	 */
 	public int getWidth() {
 		return width;
 	}
 	
 	/**
-	 * Gets the height
+	 * Gets the height of the window
 	 * 
-	 * @return height
+	 * @return height of the window
 	 */
 	public int getHeight() {
 		return height;
 	}
 
 	/**
+	 * Turns on the light
 	 * 
-	 * @return
+	 * @return light state
 	 */
 	public boolean getTurnedOn() {
 		return lightState;
@@ -104,7 +105,7 @@ public class Window {
 	/**
 	 * Sets the light state
 	 * 
-	 * @param state
+	 * @param state light on or light off
 	 */
 	public void setLightState(boolean state) {
 		lightState = state;
@@ -113,7 +114,7 @@ public class Window {
 	/**
 	 * Sets the daytime
 	 * 
-	 * @param state
+	 * @param state night or day
 	 */
 	public void setItsDay(boolean state) {
 		itsDay = state;
