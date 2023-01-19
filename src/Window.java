@@ -8,7 +8,6 @@ import java.awt.Graphics;
  * @author Fouad Ahsayni, Mykhailo Fakliier, Artur Konkel
  * @version 1.0
  */
-
 public class Window {
 	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_DAY = Color.WHITE;
 	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_NIGHT = Color.DARK_GRAY;

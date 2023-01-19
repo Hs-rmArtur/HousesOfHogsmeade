@@ -8,7 +8,6 @@ import java.awt.Graphics;
  * @author Fouad Ahsayni, Mykhailo Fakliier, Artur Konkel
  * @version 1.0
  */
-
 public class Sun {
 	final static private Color SUN_COLOR_DAY = Color.YELLOW;
 	final static private Color SUN_COLOR_NIGHT = Color.WHITE;

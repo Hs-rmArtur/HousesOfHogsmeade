@@ -42,6 +42,12 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	int houseXs[] = new int[AMOUNT_OF_HOUSES];
 	int houseYs[] = new int[AMOUNT_OF_HOUSES];
 
+	/**
+	 * Constructor of Hogsmead, initializing of trees, stars, sun and houses
+	 * 
+	 * @param hogsMeadSizeX the width of the whole screen / hogsmead
+	 * @param hogsMeadSizeY the height of the whole screen / hogsmead
+	 */
 	public Hogsmeade(int hogsMeadSizeX, int hogsMeadSizeY) {
 
 		this.hogsMeadSizeX = hogsMeadSizeX;
@@ -65,6 +71,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		buildHouseStreet();
 	}
 
+	/**
+	 * Draw all objects on the frame
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		drawSky(g);
@@ -88,15 +97,30 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	}
 
+	/**
+	 * Adding darkness, according the number of houses, that has there lights off
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void addDarkness(Graphics g) {
 		g.setColor(new Color(28, 27, 27, adjustDarkness()));
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
+	/**
+	 * Draw the sun
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawSun(Graphics g) {
 		sun.draw(g, skyColor);
 	}
 
+	/**
+	 * Draw the Sky by night or day
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawSky(Graphics g) {
 		if (sun.dayTime) {
 			skyColor = SKY_COLOR_DAY;
@@ -108,6 +132,11 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
+	/**
+	 * Draw the stars
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawStars(Graphics g) {
 		for (int i = 0; i < stars.length; i++) {
 			if (stars[i] != null) {
@@ -116,12 +145,22 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * Draw the street
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawStreet(Graphics g) {
 		g.setColor(Color.GRAY);
 		g.fillRect(0, hogsMeadSizeY - streetHeight, hogsMeadSizeX, streetHeight);
 
 	}
 
+	/**
+	 * Draw the trees
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawTrees(Graphics g) {
 		for (int i = 0; i < trees.length; i++) {
 			if (trees[i] != null) {
@@ -130,6 +169,11 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * Draw the houses with the information, if it's night or day
+	 * 
+	 * @param g setting Graphics
+	 */
 	private void drawHouses(Graphics g) {
 		letHousesKnowDayState();
 
@@ -140,6 +184,12 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * The transparency of the darkness is getting lower, when more houses has there
+	 * lights on
+	 * 
+	 * @return transparency of darkness
+	 */
 	private int adjustDarkness() {
 		int housesWithLightsOn = 0;
 		int darkness = 150;
@@ -154,6 +204,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	}
 
+	/**
+	 * Letting the houses know, if it's currently night or day
+	 */
 	private void letHousesKnowDayState() {
 
 		for (int i = 0; i < houses.length; i++) {
@@ -161,6 +214,9 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * Putting the stars into an array, by getting there position and size randomly
+	 */
 	private void buildStars() {
 		int x;
 		int y;
