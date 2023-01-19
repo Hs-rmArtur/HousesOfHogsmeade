@@ -186,7 +186,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 	/**
 	 * The transparency of the darkness is getting lower, when more houses has there
-	 * lights on
+	 * lights on --> it's getting brighter
 	 * 
 	 * @return transparency of darkness
 	 */
