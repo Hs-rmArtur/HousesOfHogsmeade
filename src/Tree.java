@@ -10,10 +10,10 @@ public class Tree {
 	final static Color TREE_GREEN = new Color(5, 102, 41);
 	final static Color TREE_BROWN = new Color(91, 58, 41);
 
-	int x;
-	int y;
-	int width;
-	int height;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 
 	/**
 	 * 

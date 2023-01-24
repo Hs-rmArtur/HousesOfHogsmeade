@@ -34,13 +34,13 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	private int treeLineY;
 	private Color skyColor;
 
-	Sun sun;
-	Tree trees[] = new Tree[AMOUNT_OF_TREES];;
-	House houses[] = new House[AMOUNT_OF_HOUSES];
-	Star stars[] = new Star[MAX_AMOUNT_STARS];
+	private Sun sun;
+	private Tree trees[] = new Tree[AMOUNT_OF_TREES];;
+	private House houses[] = new House[AMOUNT_OF_HOUSES];
+	private Star stars[] = new Star[MAX_AMOUNT_STARS];
 
-	int houseXs[] = new int[AMOUNT_OF_HOUSES];
-	int houseYs[] = new int[AMOUNT_OF_HOUSES];
+	private int houseXs[] = new int[AMOUNT_OF_HOUSES];
+	private int houseYs[] = new int[AMOUNT_OF_HOUSES];
 
 	/**
 	 * Constructor of Hogsmead, initializing of trees, stars, sun and houses

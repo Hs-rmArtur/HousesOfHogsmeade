@@ -86,12 +86,11 @@ public class House {
 	 * @return boolean if light is on or not
 	 */
 	public boolean switchLight(int x, int y) {
-
 		if ((x >= this.x && x <= this.x + width) && (y >= this.y && y <= this.y + height)) {
 
 			lightOn = !lightOn;
 		}
-
+		
 		return lightOn;
 	}
 
