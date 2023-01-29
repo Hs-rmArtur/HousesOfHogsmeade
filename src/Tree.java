@@ -7,8 +7,8 @@ import java.awt.Graphics;
  * @version 1.0
  */
 public class Tree {
-	final static Color TREE_GREEN = new Color(5, 102, 41);
-	final static Color TREE_BROWN = new Color(91, 58, 41);
+	private static final Color TREE_GREEN = new Color(5, 102, 41);
+	private static final Color TREE_BROWN = new Color(91, 58, 41);
 
 	private int x;
 	private int y;

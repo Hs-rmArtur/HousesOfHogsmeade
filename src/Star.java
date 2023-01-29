@@ -8,10 +8,10 @@ import java.awt.Graphics;
  * @version 1.0
  */
 public class Star {
-	int x;
-	int y;
-	int radius;
-	Color color;
+	private int x;
+	private int y;
+	private int radius;
+	private Color color;
 
 	/**
 	 * Constructor of Star
