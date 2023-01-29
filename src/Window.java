@@ -9,9 +9,9 @@ import java.awt.Graphics;
  * @version 1.0
  */
 public class Window {
-	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_DAY = Color.WHITE;
-	final static private Color WINDOW_COLOR_LIGHT_OFF_AT_NIGHT = Color.DARK_GRAY;
-	final static private Color WINDOW_COLOR_LIGHT_ON = Color.YELLOW;
+	private static final Color WINDOW_COLOR_LIGHT_OFF_AT_DAY = Color.WHITE;
+	private static final Color WINDOW_COLOR_LIGHT_OFF_AT_NIGHT = Color.DARK_GRAY;
+	private static final Color WINDOW_COLOR_LIGHT_ON = Color.YELLOW;
 
 	private int x;
 	private int y;

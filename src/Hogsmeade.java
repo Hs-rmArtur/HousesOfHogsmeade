@@ -80,7 +80,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 
 		drawSun(g);
 
-		if (!sun.dayTime) {
+		if (!sun.getDayTime()) {
 			drawStars(g);
 		}
 
@@ -91,7 +91,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 		drawTrees(g);
 
 		// making darkness
-		if (!sun.dayTime) {
+		if (!sun.getDayTime()) {
 			addDarkness(g);
 		}
 
@@ -122,7 +122,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	 * @param g setting Graphics
 	 */
 	private void drawSky(Graphics g) {
-		if (sun.dayTime) {
+		if (sun.getDayTime()) {
 			skyColor = SKY_COLOR_DAY;
 		} else {
 			skyColor = SKY_COLOR_NIGHT;
@@ -210,7 +210,7 @@ public class Hogsmeade extends JPanel implements MouseListener {
 	private void letHousesKnowDayState() {
 
 		for (int i = 0; i < houses.length; i++) {
-			houses[i].setItsDay(sun.dayTime);
+			houses[i].setItsDay(sun.getDayTime());
 		}
 	}
 
